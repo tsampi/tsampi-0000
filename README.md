@@ -12,7 +12,7 @@ This is the first public testnet.
   * `sha1sum ./data/adc83b19e793491b1c6ea0fd8b46cd9f32e592fc.md
   adc83b19e793491b1c6ea0fd8b46cd9f32e592fc  ./data/adc83b19e793491b1c6ea0fd8b46cd9f32e592fc.md`
 1. the file contents must be utf8 encoded
-1. a commit hash must have proper proof-of-work
+1. a commit hash must have proper proof-of-work unless it is a merge commit
   * `uint(COMMIT_HASH) < (3 / git show --format=raw --show-signature | wc -c ) * 0XFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF`
 1. all commits must be valid relative all their respective immediate parents commits
 1. the rules may be broken if the commit is signed with gpg fingerprint `8C2E 500D 0D00 45B5 0DB6  2786 7CDA 9DF0 F5CF 98B9`
