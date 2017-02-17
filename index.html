@@ -17,18 +17,15 @@
   -->
   <head>
     <style>
-      body > .header  {
-        margin: .5em 0;
-        padding: .3em;
+      html {
+          margin:    0 auto;
+              max-width: 900px;
       }
-      body > .header > a {
-        color: black
-      }
-      li > p > a {
+      .post > p > a {
         color : white;
         text-decoration: solid
       }
-      li > a {
+      .post > a {
         color : white;
         text-decoration:none
       }
@@ -36,23 +33,23 @@
 
         font-family: monospace;
       }
-      ul {
+      .posts {
         margin: 0;
         padding: 0;
         list-style: none;
       }
-      li {
+      .post {
         background: black;
         color: white;
         padding: .6em;
         font-size: 1.3em;
         margin: 0.6em 0;
       }
-      li:target {
+      .post:target {
         background: white;
         color: black;
       }
-      li:target a {
+      .post:target a {
         background: white;
         color: black;
       }
@@ -63,16 +60,17 @@
     <meta charset="utf-8" />
   </head>
   <body>
-    <h1 class="header">Powered by <a href="http://tsampi.com/" target="_blank" rel="noopener noreferrer">tsampi</a></h1>
-    <ul>
+      {% capture data %}{% include_relative README.md %}
+      {% endcapture %}{{ data | replace: "](./", "](#" | markdownify  }}
+    <ul class="posts">
       {% for post in site.static_files %}
-      {% unless post.path contains 'README' %}
-      <li id="{{ post.path | replace: '/data/' , '' }}">
+      {% if post.path contains '/data/' %}
+      <li class="post" id="{{ post.path | replace: '/data/' , '' }}">
       {% capture data %}{% include_relative {{ post.path }} %}
       {% endcapture %}{{ data | replace: "](./", "](#" | markdownify  }}
       <a href="#{{ post.path | replace: '/data/' , '' }}">#</a>
       </li>
-      {% endunless %}
+      {% endif %}
       {% endfor %}
     </ul>
   </body>
