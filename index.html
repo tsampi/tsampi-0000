@@ -1,0 +1,79 @@
+---
+---
+<html>
+
+<!--
+  .___________.    _______.     ___      .___  ___. .______    __            ___     ___     ___     ___
+  |           |   /       |    /   \     |   \/   | |   _  \  |  |          / _ \   / _ \   / _ \   / _ \
+  `---|  |----`  |   (----`   /  ^  \    |  \  /  | |  |_)  | |  |  ______ | | | | | | | | | | | | | | | |
+      |  |        \   \      /  /_\  \   |  |\/|  | |   ___/  |  | |______|| | | | | | | | | | | | | | | |
+      |  |    .----)   |    /  _____  \  |  |  |  | |  |      |  |         | |_| | | |_| | | |_| | | |_| |
+      |__|    |_______/    /__/     \__\ |__|  |__| | _|      |__|          \___/   \___/   \___/   \___/
+
+  Hello there. While you are here, why don't you go give @tsampi_project a follow on twitter.
+  To use this template, enable github pages on this repo or serve it locally with:
+  `docker run --rm -v `pwd`:/site -p 4000:4000 andredumas/github-pages serve --watch`
+
+  -->
+  <head>
+    <style>
+      body > .header  {
+        margin: .5em 0;
+        padding: .3em;
+      }
+      body > .header > a {
+        color: black
+      }
+      li > p > a {
+        color : white;
+        text-decoration: solid
+      }
+      li > a {
+        color : white;
+        text-decoration:none
+      }
+      body {
+
+        font-family: monospace;
+      }
+      ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+      li {
+        background: black;
+        color: white;
+        padding: .6em;
+        font-size: 1.3em;
+        margin: 0.6em 0;
+      }
+      li:target {
+        background: white;
+        color: black;
+      }
+      li:target a {
+        background: white;
+        color: black;
+      }
+      ul p {
+        display: inline
+      }
+    </style>
+    <meta charset="utf-8" />
+  </head>
+  <body>
+    <h1 class="header">Powered by <a href="http://tsampi.com/" target="_blank" rel="noopener noreferrer">tsampi</a></h1>
+    <ul>
+      {% for post in site.static_files %}
+      {% unless post.path contains 'README' %}
+      <li id="{{ post.path | replace: '/data/' , '' }}">
+      {% capture data %}{% include_relative {{ post.path }} %}
+      {% endcapture %}{{ data | replace: "](./", "](#" | markdownify  }}
+      <a href="#{{ post.path | replace: '/data/' , '' }}">#</a>
+      </li>
+      {% endunless %}
+      {% endfor %}
+    </ul>
+  </body>
+</html>
