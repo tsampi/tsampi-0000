@@ -29,4 +29,4 @@ This is the first public testnet.
 
 ## Pro Tip
 
-Use https://gist.github.com/readevalprint/247e5d0b9090d43d1041b6d3450d4a36 to help find a valid commit
+Use [https://gist.github.com/readevalprint/247e5d0b9090d43d1041b6d3450d4a36](https://gist.github.com/readevalprint/247e5d0b9090d43d1041b6d3450d4a36) to help find a valid commit
