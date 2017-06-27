@@ -68,7 +68,7 @@
       <li class="post" id="{{ post.path | replace: '/data/' , '' }}">
       {% capture data %}{% include_relative {{ post.path }} %}
       {% endcapture %}
-      <iframe sandbox srcdoc="{{ data | markdownify }}" src="data:text/html;charset=utf-8,{{ data | xml_escape | uri_escape }}" />
+      <iframe sandbox srcdoc="{{ data | markdownify | xml_escape }}" src="data:text/html;charset=utf-8,{{ data | xml_escape | uri_escape }}" />
       <a href="#{{ post.path | replace: '/data/' , '' | uri_escape}}">#</a>
       </li>
       {% endif %}
