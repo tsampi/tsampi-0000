@@ -67,7 +67,7 @@
       {% if post.path contains '/data/' %}
       <li class="post" id="{{ post.path | replace: '/data/' , '' }}">
       {% capture data %}{% include_relative {{ post.path }} %}
-      {% endcapture %}{{ data }}
+      {% endcapture %}{{ data | xml_escape }}
       <a href="#{{ post.path | replace: '/data/' , '' }}">#</a>
       </li>
       {% endif %}
