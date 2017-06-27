@@ -16,6 +16,8 @@
 
   -->
   <head>
+    <meta http-equiv="Content-Security-Policy" content="sandbox">
+
     <style>
       html {
           margin:    0 auto;
@@ -67,8 +69,9 @@
       {% if post.path contains '/data/' %}
       <li class="post" id="{{ post.path | replace: '/data/' , '' }}">
       {% capture data %}{% include_relative {{ post.path }} %}
-      {% endcapture %}{{ data | xml_escape }}
-      <a href="#{{ post.path | replace: '/data/' , '' }}">#</a>
+      {% endcapture %}
+      <iframe sandbox srcdoc="{{ data | markdownify }}" src="data:text/html;charset=utf-8,{{ data | xml_escape | uri_escape }}" />
+      <a href="#{{ post.path | replace: '/data/' , '' | uri_escape}}">#</a>
       </li>
       {% endif %}
       {% endfor %}
